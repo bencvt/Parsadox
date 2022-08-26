@@ -24,3 +24,4 @@ jobs:
         with:
           name: dotnet-results-${{ matrix.dotnet-version }}
           path: TestResults-${{ matrix.dotnet-version }}
+        if: ${{ always() }}
