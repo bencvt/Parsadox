@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Parsadox</PackageId>
+    <Version>1.0.0-rc1</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
+    <Authors>bencvt</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/bencvt/Parsadox</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bencvt/Parsadox</RepositoryUrl>
+    <Description>Parse game files from Paradox Interactive grand strategy games</Description>
+    <PackageTags>paradox;crusader-kings;europa-universalis;hearts-of-iron;imperator-rome;stellaris;victoria;ck2;ck3;eu4;hoi4;ironman</PackageTags>
+    <PackageIcon>parsadox-128.png</PackageIcon>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="$(AssemblyName).UnitTests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\token_map_template.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\LICENSE.txt" Pack="true" PackagePath="\"/>
+    <None Include="..\images\parsadox-128.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+</Project>

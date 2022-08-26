@@ -1,0 +1,12 @@
+# DO NOT DISTRIBUTE THIS FILE WITH CONTENT.
+# This file maps obfuscated binary tokens to their actual names.
+# Without these mappings, Ironman games will not load correctly.
+#
+# Format: code name
+#   code: unique hexadecimal UInt16 (ushort)
+#   name: string matching the non-Ironman save game key
+#
+# [Actual file content omitted. Example content below.]
+
+0xffff some_token
+0xeeee some_other_token

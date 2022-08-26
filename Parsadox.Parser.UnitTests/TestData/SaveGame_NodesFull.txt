@@ -1,0 +1,28 @@
+﻿{
+	data1=1234
+	data2="quoted string with an inner quote (\") and backslash (\\)"
+	data3
+	data4={}
+	data5=1066.12.25
+	played_character={
+		name="hasteinnfan"
+		character=6293
+		player=1
+		important_decisions={}
+		legacy={
+			{
+				character=6293
+				date=867.1.1
+				wars={ 0 0 0 0 }
+			}
+		}
+		rally_points={
+			{
+				province=2150
+				color=0
+			}
+		}
+		last_triggered_court_events_date=867.1.1
+	}
+	currently_played_characters={ 6293 }
+}
