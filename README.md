@@ -1,3 +1,5 @@
+![ci](https://github.com/bencvt/Parsadox/workflows/ci/badge.svg)
+
 Parsadox is an open-source .NET library to parse game files from Paradox Interactive grand strategy games.
 
 Supported games:
