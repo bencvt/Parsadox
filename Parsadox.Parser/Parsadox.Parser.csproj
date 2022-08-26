@@ -17,7 +17,7 @@
     <PackageProjectUrl>https://github.com/bencvt/Parsadox</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bencvt/Parsadox</RepositoryUrl>
     <Description>Parse game files from Paradox Interactive grand strategy games</Description>
-    <PackageTags>paradox;crusader-kings;europa-universalis;hearts-of-iron;imperator-rome;stellaris;victoria;ck2;ck3;eu4;hoi4;ironman</PackageTags>
+    <PackageTags>paradox-interactive;crusader-kings-2;crusader-kings-3;europa-universalis-4;hearts-of-iron-4;imperator-rome;stellaris;victoria-2;ck2;ck3;eu4;hoi4;ironman</PackageTags>
     <PackageIcon>parsadox-128.png</PackageIcon>
   </PropertyGroup>
 
