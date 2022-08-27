@@ -23,16 +23,16 @@ internal class Ck3Handler : IGameHandler
     public void WriteMainHeader(ISaveGame saveGame, Stream output, WriteParameters parameters)
     {
         var header = (saveGame.Header as Ck3SaveGameHeader) ?? new(saveGame.Header.Text);
-        header.Write(this, saveGame.Root, output, parameters);
+        header.Write(this, saveGame.State, output, parameters);
     }
 
-    public IGameVersion GetVersion(ISaveGame saveGame) => GameVersion.Parse(saveGame, "gamestate", "meta_data", "version");
+    public IGameVersion GetVersion(ISaveGame saveGame) => GameVersion.Parse(saveGame, "meta_data", "version");
 
     public void DisableIronman(ISaveGame saveGame)
     {
-        saveGame.Root.GetDescendantOrNull("gamestate", "meta_data", "ironman")?.SetValue(false);
-        saveGame.Root.GetDescendantOrNull("gamestate", "meta_data", "can_get_achievements")?.SetValue(false);
-        saveGame.Root.GetDescendantOrNull("gamestate", "ironman_manager", "ironman")?.SetValue(false);
-        saveGame.Root.GetDescendantOrNull("gamestate", "ironman_manager", "save_game")?.SetValue(string.Empty);
+        saveGame.State.GetDescendantOrNull("meta_data", "ironman")?.SetValue(false);
+        saveGame.State.GetDescendantOrNull("meta_data", "can_get_achievements")?.SetValue(false);
+        saveGame.State.GetDescendantOrNull("ironman_manager", "ironman")?.SetValue(false);
+        saveGame.State.GetDescendantOrNull("ironman_manager", "save_game")?.SetValue(string.Empty);
     }
 }

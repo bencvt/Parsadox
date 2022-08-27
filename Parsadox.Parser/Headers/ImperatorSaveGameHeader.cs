@@ -17,10 +17,10 @@ internal class ImperatorSaveGameHeader : Ck3AndImperatorSaveGameHeaderBase
 
     internal ImperatorSaveGameHeader(string text) : base(text) { }
 
-    protected override string ExportMetaData(INode root, WriteParameters parameters)
+    protected override string ExportMetaData(INode state, WriteParameters parameters)
     {
         StringBuilder builder = new();
-        foreach (var node in root["gamestate"].TakeWhile(x => META_KEYS.Contains(x.Content.Text)))
+        foreach (var node in state.TakeWhile(x => META_KEYS.Contains(x.Content.Text)))
         {
             builder.Append(NodeExporter.Export(node, parameters.NodeOutputFormat));
             if (parameters.NodeOutputFormat != NodeOutputFormat.Full)

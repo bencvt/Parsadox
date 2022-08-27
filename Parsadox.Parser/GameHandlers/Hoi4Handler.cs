@@ -35,7 +35,7 @@ internal class Hoi4Handler : IGameHandler
 
     public IGameVersion GetVersion(ISaveGame saveGame)
     {
-        var text = saveGame.Root.GetDescendantOrNull("gamestate", "version")?.Value.Text;
+        var text = saveGame.State.GetDescendantOrNull("version")?.Value.Text;
         if (text is null)
             return GameVersion.UNKNOWN;
         // The 4th version component is hexadecimal.
@@ -44,8 +44,8 @@ internal class Hoi4Handler : IGameHandler
 
     public void DisableIronman(ISaveGame saveGame)
     {
-        saveGame.Root["gamestate"].RemoveAllChildren("ironman");
-        saveGame.Root["gamestate"].RemoveAllChildren("achievement");
-        saveGame.Root.GetDescendantOrNull("gamestate", "gameplaysettings", "ironman")?.SetValue("0");
+        saveGame.State.RemoveAllChildren("ironman");
+        saveGame.State.RemoveAllChildren("achievement");
+        saveGame.State.GetDescendantOrNull("gameplaysettings", "ironman")?.SetValue("0");
     }
 }

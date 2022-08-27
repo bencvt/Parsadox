@@ -8,6 +8,8 @@ internal class MockSaveGame : ISaveGame
 
     public INode Root { get; set; }
 
+    public INode State => Root[SaveGame.GAMESTATE];
+
     public MockSaveGame(string raw)
     {
         Root = NodeFactory.LoadString(raw);

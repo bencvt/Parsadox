@@ -4,8 +4,6 @@ namespace Parsadox.Parser.SaveGames;
 
 internal abstract class SaveGameReaderBase<TItem, TResult>
 {
-    protected const string DEFAULT_ENTRY_NAME = "gamestate";
-
     protected readonly ReadParameters _parameters;
     protected readonly ITokenMap _tokenMap;
     protected IGameHandler _gameHandler;
@@ -139,7 +137,7 @@ internal abstract class SaveGameReaderBase<TItem, TResult>
             _log.WriteLineCount("Copied", entryStream.Position, "byte");
             entryStream.Position = 0L;
 
-            var entryHeader = new SaveGameHeaderReader(entryStream, isMain: false, DEFAULT_ENTRY_NAME, _log, _gameHandler)
+            var entryHeader = new SaveGameHeaderReader(entryStream, isMain: false, SaveGame.GAMESTATE, _log, _gameHandler)
                 .ReadAndSkipToContent();
 
             yield return new Entry(entryHeader, entryStream, cancellationToken);

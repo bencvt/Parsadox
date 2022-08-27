@@ -14,11 +14,11 @@ internal class StellarisHandler : IGameHandler
 
     // No headers.
 
-    public IGameVersion GetVersion(ISaveGame saveGame) => GameVersion.Parse(saveGame, "gamestate", "version");
+    public IGameVersion GetVersion(ISaveGame saveGame) => GameVersion.Parse(saveGame, "version");
 
     public void DisableIronman(ISaveGame saveGame)
     {
         saveGame.Root["meta"].RemoveChild("ironman");
-        saveGame.Root.GetDescendants("gamestate", "galaxy", "ironman").FirstOrDefault()?.SetValue(false);
+        saveGame.State.GetDescendants("galaxy", "ironman").FirstOrDefault()?.SetValue(false);
     }
 }

@@ -2,11 +2,15 @@
 
 internal class SaveGame : ISaveGame
 {
+    internal const string GAMESTATE = "gamestate";
+
     public Game Game { get; init; }
 
     public ISaveGameHeader Header { get; init; } = new SaveGameHeader();
 
     public INode Root { get; set; } = NodeFactory.CreateAnonymousArray(new());
+
+    public INode State => Root[GAMESTATE];
 
     public long WriteFile(string outputPath, WriteParameters? parameters = null) =>
         WriteFileAsync(outputPath, parameters, CancellationToken.None).Result;

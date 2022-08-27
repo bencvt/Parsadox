@@ -72,7 +72,7 @@ internal class GameVersion : IGameVersion
 
     internal static IGameVersion Parse(ISaveGame saveGame, params string[] path)
     {
-        var text = saveGame.Root.GetDescendantOrNull(path)?.Value.Text;
+        var text = saveGame.State.GetDescendantOrNull(path)?.Value.Text;
         if (text is null)
             return UNKNOWN;
         return new GameVersion(text);

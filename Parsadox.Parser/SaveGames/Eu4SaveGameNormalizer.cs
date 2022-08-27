@@ -46,7 +46,7 @@ internal static class Eu4SaveGameNormalizer
         }
 
         // Ensure each entry has a checksum node.
-        string checksum = saveGame.Root.GetDescendants("gamestate", "checksum").FirstOrDefault()?.ValueOrNull?.Text
+        string checksum = saveGame.State.GetDescendants("checksum").FirstOrDefault()?.ValueOrNull?.Text
             ?? "00000000000000000000000000000000";
         foreach (var entryNode in saveGame.Root)
         {

@@ -75,14 +75,14 @@ internal abstract class Ck3AndImperatorSaveGameHeaderBase : SaveGameHeader
         Text = $"{Text[..5]}{formatRaw}{Text[7..]}";
     }
 
-    internal void Write(IGameHandler handler, INode root, Stream output, WriteParameters parameters)
+    internal void Write(IGameHandler handler, INode state, Stream output, WriteParameters parameters)
     {
         SetFormat(parameters.SaveGameFormat);
 
         // The meta data will be serialized twice, but it's not worth caching because it's relatively small.
-        byte[] metaData = handler.TextEncoding.GetBytes(ExportMetaData(root, parameters));
+        byte[] metaData = handler.TextEncoding.GetBytes(ExportMetaData(state, parameters));
         if (metaData.Length == 0)
-            parameters.Log.WriteLine("Missing meta_data section");
+            parameters.Log.WriteLine("Missing meta data");
         SetMetaDataLength(metaData.Length);
 
         output.WriteString(Text, handler.TextEncoding);
@@ -92,5 +92,5 @@ internal abstract class Ck3AndImperatorSaveGameHeaderBase : SaveGameHeader
             output.Write(metaData);
     }
 
-    protected abstract string ExportMetaData(INode root, WriteParameters parameters);
+    protected abstract string ExportMetaData(INode state, WriteParameters parameters);
 }

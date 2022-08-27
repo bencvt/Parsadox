@@ -19,8 +19,8 @@ After installing the [NuGet package](https://www.nuget.org/packages/Parsadox):
 ISaveGame saveGame = SaveGameFactory.LoadFile("my_game.ck3");
 
 // Inspect data
-string id = saveGame.Root["gamestate"]["currently_played_characters"].First().Content.Text;
-INode player = saveGame.Root["gamestate"]["living"][id];
+string id = saveGame.State["currently_played_characters"].First().Content.Text;
+INode player = saveGame.State["living"][id];
 string name = player["first_name"].Value.Text;
 decimal? stress = player.GetDescendantOrNull("alive_data", "stress")?.Value.AsDecimal;
 Console.WriteLine($"{name} has {stress ?? 0} stress");

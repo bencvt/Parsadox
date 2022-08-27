@@ -21,6 +21,11 @@ public interface ISaveGame
     /// </summary>
     INode Root { get; set; }
 
+    /// <summary>
+    /// Shorthand for Root["gamestate"].
+    /// </summary>
+    INode State { get; }
+
     /// <returns>the number of bytes written</returns>
     long WriteFile(string outputPath, WriteParameters? parameters = null);
 

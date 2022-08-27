@@ -64,14 +64,14 @@ internal class Ck2Handler : IGameHandler
     {
         // [Re]create the meta entry.
         yield return NodeFactory.Create("meta").SetChildren(META_SECTIONS
-            .SelectMany(x => saveGame.Root.GetDescendants("gamestate", x))
+            .SelectMany(x => saveGame.State.GetDescendants(x))
             .ToList());
-        yield return saveGame.Root["gamestate"];
+        yield return saveGame.State;
     }
 
     public string AdjustEntryNameForWrite(string entryName, string? outputPath)
     {
-        if (entryName != "gamestate")
+        if (entryName != SaveGame.GAMESTATE)
             return entryName;
         var fileName = Path.GetFileName(outputPath);
         if (string.IsNullOrWhiteSpace(fileName))
@@ -87,7 +87,7 @@ internal class Ck2Handler : IGameHandler
     public void WriteEntryFooter(ISaveGame saveGame, Stream output, WriteParameters parameters)
     {
         output.WriteString("}\n", TextEncoding);
-        foreach (var node in saveGame.Root.GetDescendants("gamestate", "checksum"))
+        foreach (var node in saveGame.State.GetDescendants("checksum"))
         {
             string text = NodeExporter.Export(node, parameters.NodeOutputFormat);
             output.WriteString(text, TextEncoding);
@@ -101,15 +101,15 @@ internal class Ck2Handler : IGameHandler
         int count = saveGame.Root.Count();
         if (count != 1)
             throw new ParseException($"Expecting exactly one entry, found {count}: {{ {Strings.EscapeAndQuote(saveGame.Root.ChildrenOrEmpty)} }}");
-        saveGame.Root.Single().Content.Text = "gamestate";
+        saveGame.Root.Single().Content.Text = SaveGame.GAMESTATE;
     }
 
-    public IGameVersion GetVersion(ISaveGame saveGame) => GameVersion.Parse(saveGame, "gamestate", "version");
+    public IGameVersion GetVersion(ISaveGame saveGame) => GameVersion.Parse(saveGame, "version");
 
     public void DisableIronman(ISaveGame saveGame)
     {
-        saveGame.Root["gamestate"].RemoveAllChildren("ironman");
-        saveGame.Root["gamestate"].RemoveAllChildren("seed");
-        saveGame.Root["gamestate"].RemoveAllChildren("count");
+        saveGame.State.RemoveAllChildren("ironman");
+        saveGame.State.RemoveAllChildren("seed");
+        saveGame.State.RemoveAllChildren("count");
     }
 }

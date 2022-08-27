@@ -6,7 +6,7 @@ internal class SaveGameReader : SaveGameReaderBase<INode, ISaveGame>
 
     protected override INode ProcessTokens(ISaveGameHeader entryHeader, IEnumerable<IToken> tokens)
     {
-        string key = entryHeader.FileName ?? DEFAULT_ENTRY_NAME;
+        string key = entryHeader.FileName ?? SaveGame.GAMESTATE;
         List<INode> children;
 
         using (Timed timed = new(_log, $"Built nodes for {key} in"))

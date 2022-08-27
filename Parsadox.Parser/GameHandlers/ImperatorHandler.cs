@@ -26,14 +26,14 @@ internal class ImperatorHandler : IGameHandler
         header.Write(this, saveGame.Root, output, parameters);
     }
 
-    public IGameVersion GetVersion(ISaveGame saveGame) => GameVersion.Parse(saveGame, "gamestate", "version");
+    public IGameVersion GetVersion(ISaveGame saveGame) => GameVersion.Parse(saveGame, "version");
 
     public void DisableIronman(ISaveGame saveGame)
     {
-        saveGame.Root["gamestate"].RemoveAllChildren("ironman");
-        saveGame.Root["gamestate"].RemoveAllChildren("iron");
-        saveGame.Root.GetDescendantOrNull("gamestate", "game_configuration")?.RemoveAllChildren("ironman");
-        saveGame.Root.GetDescendantOrNull("gamestate", "game_configuration", "ironman_cloud")?.SetValue(false);
-        saveGame.Root.GetDescendantOrNull("gamestate", "game_configuration", "ironman_save_name")?.SetValue(false);
+        saveGame.State.RemoveAllChildren("ironman");
+        saveGame.State.RemoveAllChildren("iron");
+        saveGame.State.GetDescendantOrNull("game_configuration")?.RemoveAllChildren("ironman");
+        saveGame.State.GetDescendantOrNull("game_configuration", "ironman_cloud")?.SetValue(false);
+        saveGame.State.GetDescendantOrNull("game_configuration", "ironman_save_name")?.SetValue(false);
     }
 }
