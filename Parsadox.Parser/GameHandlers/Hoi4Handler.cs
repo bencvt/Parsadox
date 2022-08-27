@@ -30,12 +30,6 @@ internal class Hoi4Handler : IGameHandler
 
     public void WriteMainHeader(ISaveGame saveGame, Stream output, WriteParameters parameters)
     {
-        if (!parameters.SaveGameFormat.IsCompressed())
-            output.WriteString("HOI4txt\n", TextEncoding);
-    }
-
-    public void WriteEntryHeader(ISaveGame saveGame, INode entryNode, Stream output, WriteParameters parameters)
-    {
         output.WriteString("HOI4txt\n", TextEncoding);
     }
 

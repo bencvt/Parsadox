@@ -82,8 +82,6 @@ internal static class Strings
         return bool.Parse(text);
     }
 
-    internal static string BytesToString(byte[] data) => "{ " + string.Join(' ', data.Select(x => $"{x:x2}")) + " }";
-
     internal static string CountItem(long count, string item) => count == 1 ? $"1 {item}" : $"{count:n0} {item}s";
 
     internal static void WriteLineCount(this TextWriter writer, string prefix, long count, string name) =>
