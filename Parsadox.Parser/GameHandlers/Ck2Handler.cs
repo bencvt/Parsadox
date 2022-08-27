@@ -69,7 +69,7 @@ internal class Ck2Handler : IGameHandler
         yield return saveGame.Root["gamestate"];
     }
 
-    public string AdjustEntryName(string entryName, string? outputPath)
+    public string AdjustEntryNameForWrite(string entryName, string? outputPath)
     {
         if (entryName != "gamestate")
             return entryName;

@@ -12,5 +12,9 @@ internal class Vic2Handler : IGameHandler
 
     public bool HasBinaryFormat => false;
 
-    // No save game headers, Ironman, or version.
+    // No headers, Ironman, or version stored in the save game.
+
+    public void DisableIronman(ISaveGame saveGame) { }
+
+    public IGameVersion GetVersion(ISaveGame saveGame) => GameVersion.UNKNOWN;
 }

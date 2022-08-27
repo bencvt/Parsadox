@@ -95,7 +95,7 @@ internal class SaveGameWriter
         using ZipArchive archive = new(wrapper, ZipArchiveMode.Create);
         foreach (var entryNode in _gameHandler.GetEntryNodesToWrite(_saveGame))
         {
-            string entryName = _gameHandler.AdjustEntryName(entryNode.Content.Text, outputPath);
+            string entryName = _gameHandler.AdjustEntryNameForWrite(entryNode.Content.Text, outputPath);
             using var entryStream = archive.CreateEntry(entryName).Open();
 
             _gameHandler.WriteEntryHeader(_saveGame, entryNode, entryStream, _parameters);

@@ -5,13 +5,13 @@
 /// </summary>
 internal interface IGameHandler
 {
-    string Name => "Unknown";
+    string Name { get; }
 
-    string SaveGameExtension => ".*";
+    string SaveGameExtension { get; }
 
-    Encoding TextEncoding => Encoding.UTF8;
+    Encoding TextEncoding { get; }
 
-    SaveGameCompression Compression => SaveGameCompression.Optional;
+    SaveGameCompression Compression { get; }
 
     /// <summary>
     /// If this game's compressed format uses multiple entries
@@ -26,7 +26,7 @@ internal interface IGameHandler
     /// </summary>
     string? DoNotLoadEntry => null;
 
-    bool HasBinaryFormat => false;
+    bool HasBinaryFormat { get; }
 
     /// <summary>
     /// Determine whether an I32 token contains a <see cref="GameDate"/>
@@ -62,7 +62,7 @@ internal interface IGameHandler
 
     IEnumerable<INode> GetEntryNodesToWrite(ISaveGame saveGame) => saveGame.Root;
 
-    string AdjustEntryName(string entryName, string? outputPath) => entryName;
+    string AdjustEntryNameForWrite(string entryName, string? outputPath) => entryName;
 
     int WriteIndentLevel => 0;
 
@@ -70,12 +70,19 @@ internal interface IGameHandler
 
     void WriteEntryFooter(ISaveGame saveGame, Stream output, WriteParameters parameters) { }
 
-    void DisableIronman(ISaveGame saveGame) => throw new NotImplementedException();
+    void DisableIronman(ISaveGame saveGame);
 
     /// <summary>
     /// Move or add nodes to account for differences when loading compressed vs uncompressed.
+    /// <para/>
+    /// Called when loading the save game.
     /// </summary>
     void Normalize(ISaveGame saveGame) { }
 
-    IGameVersion GetVersion(ISaveGame saveGame) => GameVersion.UNKNOWN;
+    /// <summary>
+    /// Extract the game version from the save game content.
+    /// <para/>
+    /// Called when loading the save game.
+    /// </summary>
+    IGameVersion GetVersion(ISaveGame saveGame);
 }
