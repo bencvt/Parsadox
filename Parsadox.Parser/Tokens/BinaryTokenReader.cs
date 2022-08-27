@@ -198,7 +198,7 @@ internal class BinaryTokenReader : StreamProcessor, ITokenReader
                 if (name is null)
                 {
                     if (_abortIfUnmapped)
-                        throw new ParseException($"0x{code:x4} is not in the mapping");
+                        throw new ParseException($"0x{code:x4} is not in the token map, which has {_tokenMap}");
                     return new U16Token(code);
                 }
                 return _wrapTokenFunc(code, new ResolvedNameToken(name));

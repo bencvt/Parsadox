@@ -46,6 +46,6 @@ public class SaveGameReaderBinaryTests : TestsBase
         };
 
         Assert.That(() => SaveGameFactory.LoadFile(Game.Unknown, "some_file.txt"),
-            Throws.TypeOf<AggregateException>().And.Message.Contains("0x1111 is not in the mapping"));
+            Throws.TypeOf<AggregateException>().And.Message.Contains("0x1111 is not in the token map, which has 0 codes"));
     }
 }

@@ -61,7 +61,7 @@ public class SaveGameTokenReaderTests : TestsBase
         using var stream = CreateBinary();
 
         Assert.That(() => SaveGameTokenFactory.LoadStream(Game.Unknown, stream),
-            Throws.TypeOf<AggregateException>().And.Message.Contains("0x1111 is not in the mapping"));
+            Throws.TypeOf<AggregateException>().And.Message.Contains("0x1111 is not in the token map, which has 0 codes"));
     }
 
     [Test]
