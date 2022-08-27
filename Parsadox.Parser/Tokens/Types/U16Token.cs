@@ -9,7 +9,12 @@ public class U16Token : IToken, INodeContent
     public string Text
     {
         get => $"0x{Code:x4}";
-        set => Code = ushort.Parse(value);
+        set
+        {
+            if (!value.StartsWith("0x"))
+                throw new FormatException("Value must start with 0x");
+            Code = Convert.ToUInt16(value, 16);
+        }
     }
 
     public INodeContent AsNodeContent => this;
