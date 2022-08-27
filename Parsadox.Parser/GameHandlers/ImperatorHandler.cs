@@ -14,7 +14,7 @@ internal class ImperatorHandler : IGameHandler
 
     // TODO add ImperatorTokenTypeMap
 
-    public IFloatConverter FloatConverter => new Ck3AndImperatorFloatConverter();
+    public IFloatConverter FloatConverter => Ck3AndImperatorFloatConverter.Instance;
 
     public bool HasHeader(Stream input) => input.PeekString(3) == "SAV";
 

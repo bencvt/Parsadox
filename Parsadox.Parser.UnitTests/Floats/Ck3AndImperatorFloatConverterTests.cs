@@ -3,7 +3,7 @@
 [TestCovers(typeof(Ck3AndImperatorFloatConverter))]
 public class Ck3AndImperatorFloatConverterTests : FloatConverterTestsBase
 {
-    internal override IFloatConverter Converter => new Ck3AndImperatorFloatConverter();
+    internal override IFloatConverter Converter => Ck3AndImperatorFloatConverter.Instance;
 
     private static readonly object[] F32_CASES =
     {

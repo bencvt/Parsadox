@@ -2,6 +2,10 @@
 
 internal class DefaultFloatConverter : IFloatConverter
 {
+    internal static readonly DefaultFloatConverter Instance = new();
+
+    protected DefaultFloatConverter() { }
+
     public bool IsBig => false;
 
     public virtual float ReadBinaryF32(BinaryReader reader) => reader.ReadSingle();

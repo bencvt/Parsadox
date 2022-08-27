@@ -34,12 +34,12 @@ internal interface IGameHandler
     /// <para/>
     /// Only relevant when loading binary save games.
     /// </summary>
-    ITokenTypeMap TokenTypeMap => new DefaultTokenTypeMap(GameDate.YEAR_1);
+    ITokenTypeMap TokenTypeMap => DefaultTokenTypeMap.Instance;
 
     /// <summary>
     /// Only relevant when loading binary save games.
     /// </summary>
-    IFloatConverter FloatConverter => new DefaultFloatConverter();
+    IFloatConverter FloatConverter => DefaultFloatConverter.Instance;
 
     /// <summary>
     /// Detect whether a save game file has a header.

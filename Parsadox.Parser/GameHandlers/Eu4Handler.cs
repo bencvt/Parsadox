@@ -16,7 +16,7 @@ internal class Eu4Handler : IGameHandler
 
     // TODO add Eu4TokenTypeMap
 
-    public IFloatConverter FloatConverter => new Eu4AndHoi4FloatConverter();
+    public IFloatConverter FloatConverter => Eu4AndHoi4FloatConverter.Instance;
 
     public bool HasHeader(Stream input) => input.PeekString(3) == "EU4";
 

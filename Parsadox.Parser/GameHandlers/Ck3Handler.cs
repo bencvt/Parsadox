@@ -12,9 +12,9 @@ internal class Ck3Handler : IGameHandler
 
     public bool HasBinaryFormat => true;
 
-    public ITokenTypeMap TokenTypeMap => new Ck3TokenTypeMap();
+    public ITokenTypeMap TokenTypeMap => Ck3TokenTypeMap.Instance;
 
-    public virtual IFloatConverter FloatConverter => new Ck3AndImperatorFloatConverter();
+    public virtual IFloatConverter FloatConverter => Ck3AndImperatorFloatConverter.Instance;
 
     public bool HasHeader(Stream input) => input.PeekString(3) == "SAV";
 

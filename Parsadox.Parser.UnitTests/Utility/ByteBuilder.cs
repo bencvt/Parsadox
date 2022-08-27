@@ -12,7 +12,7 @@ internal class ByteBuilder : MemoryStream
 
     public ByteBuilder(IFloatConverter? converter = null, Encoding? encoding = null)
     {
-        _converter = converter ?? new DefaultFloatConverter();
+        _converter = converter ?? DefaultFloatConverter.Instance;
         _encoding = encoding ?? Encoding.UTF8;
     }
 

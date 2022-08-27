@@ -8,9 +8,11 @@
 /// </summary>
 internal class DefaultTokenTypeMap : ITokenTypeMap
 {
+    internal static readonly DefaultTokenTypeMap Instance = new(GameDate.YEAR_1);
+
     private readonly int _assumeIntIfLessThan;
 
-    internal DefaultTokenTypeMap(GameDate assumeIntIfBefore)
+    private DefaultTokenTypeMap(GameDate assumeIntIfBefore)
     {
         _assumeIntIfLessThan = assumeIntIfBefore.ToI32();
     }

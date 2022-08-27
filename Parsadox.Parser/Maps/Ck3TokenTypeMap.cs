@@ -6,6 +6,10 @@
 /// </summary>
 internal class Ck3TokenTypeMap : ITokenTypeMap
 {
+    internal static readonly Ck3TokenTypeMap Instance = new();
+
+    private Ck3TokenTypeMap() { }
+
     // key=1000.1.1
     private static readonly Regex RE_KEYS_WITH_DATE_VALUE = new(@"^\w+_(date|decision|interaction)$");
     private static readonly HashSet<string> KEYS_WITH_DATE_VALUE = new()

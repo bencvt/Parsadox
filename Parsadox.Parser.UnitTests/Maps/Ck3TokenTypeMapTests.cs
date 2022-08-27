@@ -9,7 +9,7 @@ public class Ck3TokenTypeMapTests : TestsBase
     [TestCaseSource(nameof(VALUE_CASES))]
     public void IsValueGameDate_Value_IsCorrect(string key, bool expected)
     {
-        bool actual = new Ck3TokenTypeMap().IsValueGameDate(new I32Token(123), new GenericTextToken(key));
+        bool actual = Ck3TokenTypeMap.Instance.IsValueGameDate(new I32Token(123), new GenericTextToken(key));
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -24,7 +24,7 @@ public class Ck3TokenTypeMapTests : TestsBase
             new I32Token(new GameDate(1066, 12, 25).ToI32()),
         };
 
-        var node = new NodeBuilder(tokens, new Ck3TokenTypeMap()).Build().Single();
+        var node = new NodeBuilder(tokens, Ck3TokenTypeMap.Instance).Build().Single();
 
         if (expectedIsGameDate)
             Assert.That(node.Value, Is.TypeOf<GameDateToken>());
@@ -61,7 +61,7 @@ public class Ck3TokenTypeMapTests : TestsBase
     [TestCaseSource(nameof(KEY_CASES))]
     public void IsKeyGameDate_Value_IsCorrect(string? grandparent, string? parent, bool expected)
     {
-        bool actual = new Ck3TokenTypeMap().IsKeyGameDate(
+        bool actual = Ck3TokenTypeMap.Instance.IsKeyGameDate(
             new I32Token(123),
             parent is null ? null : new GenericTextToken(parent),
             grandparent is null ? null : new GenericTextToken(grandparent));
@@ -92,8 +92,8 @@ public class Ck3TokenTypeMapTests : TestsBase
             SpecialToken.CLOSE,
         };
         var builder = isLazy
-            ? new LazyNodeBuilder(tokens, new Ck3TokenTypeMap())
-            : new NodeBuilder(tokens, new Ck3TokenTypeMap());
+            ? new LazyNodeBuilder(tokens, Ck3TokenTypeMap.Instance)
+            : new NodeBuilder(tokens, Ck3TokenTypeMap.Instance);
 
         var node = builder.Build().Single().Single().Single();
 

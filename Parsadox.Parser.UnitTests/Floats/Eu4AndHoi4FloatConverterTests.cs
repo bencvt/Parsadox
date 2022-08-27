@@ -3,7 +3,7 @@
 [TestCovers(typeof(Eu4AndHoi4FloatConverter))]
 public class Eu4AndHoi4FloatConverterTests : FloatConverterTestsBase
 {
-    internal override IFloatConverter Converter => new Eu4AndHoi4FloatConverter();
+    internal override IFloatConverter Converter => Eu4AndHoi4FloatConverter.Instance;
 
     private static readonly object[] F32_CASES =
     {

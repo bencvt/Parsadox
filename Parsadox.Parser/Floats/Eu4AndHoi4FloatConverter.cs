@@ -2,6 +2,10 @@
 
 internal class Eu4AndHoi4FloatConverter : IFloatConverter
 {
+    internal static readonly Eu4AndHoi4FloatConverter Instance = new();
+
+    private Eu4AndHoi4FloatConverter() { }
+
     public bool IsBig => true;
 
     public float ReadBinaryF32(BinaryReader reader) => reader.ReadInt32() / 1000.0f;

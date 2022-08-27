@@ -3,7 +3,7 @@
 [TestCovers(typeof(DefaultFloatConverter))]
 public class DefaultFloatConverterTests : FloatConverterTestsBase
 {
-    internal override IFloatConverter Converter => new DefaultFloatConverter();
+    internal override IFloatConverter Converter => DefaultFloatConverter.Instance;
 
     private static readonly object[] F32_CASES =
     {
