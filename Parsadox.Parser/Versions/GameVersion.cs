@@ -38,11 +38,8 @@ internal class GameVersion : IGameVersion
                 {
                     if (int.TryParse(parts[2], out value))
                         Patch = value;
-                    if (parts.Count > 3 && !ignorePatchMinor)
-                    {
-                        if (int.TryParse(parts[3], out value))
-                            PatchMinor = value;
-                    }
+                    if (parts.Count > 3 && !ignorePatchMinor && int.TryParse(parts[3], out value))
+                        PatchMinor = value;
                 }
             }
         }

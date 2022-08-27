@@ -169,14 +169,12 @@ internal class BinaryTokenReader : StreamProcessor, ITokenReader
             case BinaryTokenCodes.F32:
                 if (_gameHandler.FloatConverter.IsBig)
                     return new BigF32Token(_gameHandler.FloatConverter.ReadBinaryF32(_reader));
-                else
-                    return new F32Token(_gameHandler.FloatConverter.ReadBinaryF32(_reader));
+                return new F32Token(_gameHandler.FloatConverter.ReadBinaryF32(_reader));
 
             case BinaryTokenCodes.F64:
                 if (_gameHandler.FloatConverter.IsBig)
                     return new BigF64Token(_gameHandler.FloatConverter.ReadBinaryF64(_reader));
-                else
-                    return new F64Token(_gameHandler.FloatConverter.ReadBinaryF64(_reader));
+                return new F64Token(_gameHandler.FloatConverter.ReadBinaryF64(_reader));
 
             case BinaryTokenCodes.STRING:
             case BinaryTokenCodes.STRING_ALT:

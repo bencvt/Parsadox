@@ -29,7 +29,7 @@ public static class SaveGameFactory
     public static ISaveGame LoadStream(Game game, Stream input, ReadParameters? parameters = null) =>
         LoadStreamAsync(game, input, parameters, progress: null, CancellationToken.None).Result;
 
-    public static async Task<ISaveGame> LoadStreamAsync(this Game game, Stream input, ReadParameters? parameters, IProgress<double>? progress, CancellationToken cancellationToken)
+    public static async Task<ISaveGame> LoadStreamAsync(Game game, Stream input, ReadParameters? parameters, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         SaveGameReader reader = new(ReadParameters.Get(parameters, game));
         return await reader.LoadStreamAsync(input, progress, cancellationToken);

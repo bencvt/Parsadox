@@ -16,7 +16,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/bencvt/Parsadox</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bencvt/Parsadox</RepositoryUrl>
-    <Description>Parse game files from Paradox Interactive grand strategy games</Description>
+    <Description>Parse files from Paradox Interactive grand strategy games: CK3, EU4, HOI4, and more</Description>
     <PackageTags>paradox-interactive;crusader-kings-2;crusader-kings-3;europa-universalis-4;hearts-of-iron-4;imperator-rome;stellaris;victoria-2;ck2;ck3;eu4;hoi4;ironman</PackageTags>
     <PackageIcon>parsadox-128.png</PackageIcon>
   </PropertyGroup>
@@ -44,7 +44,7 @@
   <ItemGroup>
     <None Include="..\README.md" Pack="true" PackagePath="\"/>
     <None Include="..\LICENSE.txt" Pack="true" PackagePath="\"/>
-    <None Include="..\images\parsadox-128.png" Pack="true" PackagePath="\"/>
+    <None Include="..\assets\parsadox-128.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>

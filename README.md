@@ -1,6 +1,6 @@
-![icon](images/parsadox-128.png) ![ci](https://github.com/bencvt/Parsadox/workflows/ci/badge.svg)
+![ci](https://github.com/bencvt/Parsadox/workflows/ci/badge.svg)
 
-Parsadox is an open-source .NET library to parse game files from Paradox Interactive grand strategy games.
+Parsadox is an open-source .NET library to parse save game files from Paradox Interactive grand strategy games.
 
 Supported games:
  * Crusader Kings II
@@ -11,8 +11,22 @@ Supported games:
  * Stellaris
  * Victoria II
 
-# Basic usage
-1. Install the NuGet package.
-2. Use `SaveGameFactory` to load a save game. The data is parsed into a tree structure.
-3. View or modify the data using the `ISaveGame` instance.
-4. Optionally, write a copy of the (potentially modified) save game.
+# Example
+
+After installing the [NuGet package](https://www.nuget.org/packages/Parsadox):
+
+```cs
+ISaveGame saveGame = SaveGameFactory.LoadFile("my_game.ck3");
+
+// Inspect data
+string id = saveGame.Root["gamestate"]["currently_played_characters"].First().Content.Text;
+INode player = saveGame.Root["gamestate"]["living"][id];
+string name = player["first_name"].Value.Text;
+decimal? stress = player.GetDescendantOrNull("alive_data", "stress")?.Value.AsDecimal;
+Console.WriteLine($"{name} has {stress ?? 0} stress");
+
+// Modify data
+if (stress.HasValue)
+    player["alive_data"]["stress"].Value.AsDecimal -= 25;
+saveGame.DisableIronman().WriteFile("my_game_modified.ck3");
+```
