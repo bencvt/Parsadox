@@ -187,4 +187,9 @@ public interface INode : IEnumerable<INode>
     /// Recursively convert the node tree to text.
     /// </summary>
     string Dump(NodeOutputFormat format = NodeOutputFormat.Minimal);
+
+    /// <summary>
+    /// Shorthand for Dump(NodeOutputFormat.Full).
+    /// </summary>
+    string DumpIndented() => Dump(NodeOutputFormat.Full);
 }
