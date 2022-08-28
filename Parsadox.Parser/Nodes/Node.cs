@@ -34,8 +34,6 @@ internal class Node : INode
 
     public INodeContent? ValueOrNull { get; set; }
 
-    public bool HasValue => ValueOrNull is not null;
-
     public INode SetValue(INodeContent value)
     {
         ValueOrNull = value;
@@ -94,8 +92,6 @@ internal class Node : INode
         return this;
     }
 
-    public bool HasChildrenStorage => ChildrenOrNull is not null;
-
     public bool HasChild(string key) => ChildrenOrEmpty.Any(x => x.Content.Text == key);
 
     public INode? GetChildOrNull(params string[] keys) => keys
@@ -112,7 +108,7 @@ internal class Node : INode
         var child = GetChildOrNull(key);
         if (child is null)
         {
-            if (!HasChildrenStorage)
+            if (ChildrenOrNull is null)
                 Children = new();
             child = NodeFactory.Create(key);
             Children.Add(child);
@@ -152,8 +148,6 @@ internal class Node : INode
         return removed;
     }
 
-    public List<INode> RemoveAllChildren(string key) => RemoveAllChildren(x => x.Content.Text == key);
-
     public IEnumerable<INode> GetDescendants(params string[] path)
     {
         if (path.Length == 0)
@@ -163,8 +157,6 @@ internal class Node : INode
             .Where(x => x.Content.Text == path[0])
             .SelectMany(x => x.GetDescendants(path[1..]));
     }
-
-    public INode? GetDescendantOrNull(params string[] path) => GetDescendants(path).FirstOrDefault();
 
     public INode this[string key] => GetChildOrThrow(key);
 

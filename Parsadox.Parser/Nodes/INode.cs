@@ -51,7 +51,7 @@ public interface INode : IEnumerable<INode>
     /// <summary>
     /// Shorthand for <code>ValueOrNull is not null</code>
     /// </summary>
-    bool HasValue { get; }
+    bool HasValue => ValueOrNull is not null;
 
     INode SetValue(INodeContent value);
     INode SetValue(string text);
@@ -118,7 +118,7 @@ public interface INode : IEnumerable<INode>
     /// <summary>
     /// Shorthand for <code>ChildrenOrNull is not null</code>
     /// </summary>
-    bool HasChildrenStorage { get; }
+    bool HasChildrenStorage => ChildrenOrNull is not null;
 
     /// <summary>
     /// Whether any of this node's children has a child node with the specified content.
@@ -156,7 +156,7 @@ public interface INode : IEnumerable<INode>
     /// Shorthand for RemoveAllChildren(x => x.Content.Text == key).
     /// </summary>
     /// <returns>the removed nodes, if any</returns>
-    List<INode> RemoveAllChildren(string key);
+    List<INode> RemoveAllChildren(string key) => RemoveAllChildren(x => x.Content.Text == key);
 
     /// <summary>
     /// Recursively get all descendants matching the path. Example:
@@ -169,9 +169,9 @@ public interface INode : IEnumerable<INode>
     IEnumerable<INode> GetDescendants(params string[] path);
 
     /// <summary>
-    /// Shorthand for GetDescendants().FirstOrDefault().
+    /// Shorthand for GetDescendants(path).FirstOrDefault().
     /// </summary>
-    INode? GetDescendantOrNull(params string[] path);
+    INode? GetDescendantOrNull(params string[] path) => GetDescendants(path).FirstOrDefault();
 
     /// <summary>
     /// Get the first child matching the key, or throw an exception if there is no such child.
