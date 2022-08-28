@@ -1,6 +1,6 @@
 [![NuGet](https://img.shields.io/nuget/v/Parsadox.svg?logo=nuget)](https://www.nuget.org/packages/Parsadox) ![ci](https://img.shields.io/github/workflow/status/bencvt/Parsadox/ci?logo=github)
 
-Parsadox is an open-source .NET library to parse save game files from Paradox Interactive grand strategy games.
+**Parsadox** is an open-source .NET library to parse save game files from Paradox Interactive grand strategy games.
 
 Supported games:
  * Crusader Kings II

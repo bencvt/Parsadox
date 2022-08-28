@@ -29,6 +29,16 @@ public interface ISaveGame
     /// <returns>the number of bytes written</returns>
     long WriteFile(string outputPath, WriteParameters? parameters = null);
 
+    /// <summary>
+    /// Shorthand for:
+    /// <code>
+    /// WriteFile(outputPath, new() { SaveGameFormat = SaveGameFormat.UncompressedText })
+    /// </code>
+    /// </summary>
+    /// <returns>the number of bytes written</returns>
+    long WriteFileUncompressed(string outputPath) =>
+        WriteFile(outputPath, new() { SaveGameFormat = SaveGameFormat.UncompressedText });
+
     /// <returns>the number of bytes written</returns>
     Task<long> WriteFileAsync(string outputPath, WriteParameters? parameters, CancellationToken cancellationToken);
 
