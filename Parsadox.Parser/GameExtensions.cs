@@ -22,6 +22,11 @@ public static class GameExtensions
     public static string GetSaveGameExtension(this Game game) => game.GetDefaultVersionHandler().SaveGameExtension;
 
     /// <summary>
+    /// Either UTF8 or Windows-1252.
+    /// </summary>
+    public static Encoding GetEncoding(this Game game) => game.GetDefaultVersionHandler().TextEncoding;
+
+    /// <summary>
     /// Attempt to find the save game directory that stores local saves.
     /// <para/>
     /// Cloud saves are also saved locally, but in a different platform-specific directory.
