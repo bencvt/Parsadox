@@ -1,6 +1,7 @@
 global using NUnit.Framework;
 global using Parsadox.Parser.Exceptions;
 global using Parsadox.Parser.Floats;
+global using Parsadox.Parser.GameAssets;
 global using Parsadox.Parser.GameHandlers;
 global using Parsadox.Parser.Headers;
 global using Parsadox.Parser.Maps;

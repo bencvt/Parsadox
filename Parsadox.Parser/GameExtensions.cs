@@ -48,7 +48,8 @@ public static class GameExtensions
     /// <para/>
     /// Returns null if the game is installed in a non-standard location.
     /// <para/>
-    /// Also returns null if the game is installed via PC Game Pass.
+    /// Also returns null if the game is installed via the Windows Store
+    /// platform (includes PC Game Pass).
     /// Accessing game files in this case requires a bit more work:
     /// <see href="https://github.com/Wunkolo/UWPDumper"/>.
     /// </summary>
@@ -60,7 +61,9 @@ public static class GameExtensions
         {
             // Windows
             Path.Join(Path.GetPathRoot(Environment.SystemDirectory),
-                "Program Files (x86)", "Steam", "steamapps", "common", gameDir)
+                "Program Files (x86)", "Steam", "steamapps", "common", gameDir),
+            Path.Join("C:", "SteamLibrary", "steamapps", "common"),
+            Path.Join("D:", "SteamLibrary", "steamapps", "common"),
         };
         AddMac("SteamApps");
         AddMac("steamapps");

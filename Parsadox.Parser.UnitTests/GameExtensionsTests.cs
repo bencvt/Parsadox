@@ -29,7 +29,7 @@ public class GameExtensionsTests : TestsBase
         Assert.Multiple(() =>
         {
             Assert.That(dir, Is.Null);
-            Assert.That(mockFileSystem.DirectoryExistsCalls, Has.Count.EqualTo(7));
+            Assert.That(mockFileSystem.DirectoryExistsCalls, Has.Count.EqualTo(9));
         });
     }
 }

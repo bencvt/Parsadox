@@ -5,25 +5,27 @@
 /// </summary>
 internal interface IFileSystem
 {
-    bool FileExists(string path) => File.Exists(path);
+    bool FileExists(string path);
 
-    bool DirectoryExists(string path) => Directory.Exists(path);
+    bool DirectoryExists(string path);
 
-    string ReadAllText(string path, Encoding encoding) => File.ReadAllText(path, encoding);
+    IEnumerable<string> EnumerateFiles(string path, string searchPattern);
 
-    void Delete(string path) => File.Delete(path);
+    string ReadAllText(string path, Encoding encoding);
 
-    void Copy(string fromPath, string toPath, bool overwrite) => File.Copy(fromPath, toPath, overwrite);
+    void Delete(string path);
 
-    string CreateTemporaryFile() => Path.GetTempFileName();
+    void Copy(string fromPath, string toPath, bool overwrite);
 
-    string GetAbsolutePath(string path) => new FileInfo(path).FullName;
+    string CreateTemporaryFile();
 
-    long GetFileSize(string path) => new FileInfo(path).Length;
+    string GetAbsolutePath(string path);
 
-    Stream OpenRead(string path) => new FileInfo(path).OpenRead();
+    long GetFileSize(string path);
 
-    Stream OpenCreate(string path) => File.Create(path);
+    Stream OpenRead(string path);
 
-    string? GetEnvironmentVariable(string name) => Environment.GetEnvironmentVariable(name);
+    Stream OpenCreate(string path);
+
+    string? GetEnvironmentVariable(string name);
 }

@@ -5,8 +5,6 @@ namespace Parsadox.Parser.UnitTests.Utility;
 
 internal class MockFileSystem : IFileSystem
 {
-    static MockFileSystem() => _ = new MockFileSystem();
-
     internal MockFileSystem()
     {
         FileSystem.Instance = this;
@@ -26,6 +24,14 @@ internal class MockFileSystem : IFileSystem
     {
         DirectoryExistsCalls.Add(path);
         return DirectoryExistsReturns;
+    }
+
+    internal List<(string path, string searchPattern)> EnumerateFilesCalls = new();
+    internal IEnumerable<string> EnumerateFilesReturns { get; set; } = Enumerable.Empty<string>();
+    public IEnumerable<string> EnumerateFiles(string path, string searchPattern)
+    {
+        EnumerateFilesCalls.Add((path, searchPattern));
+        return EnumerateFilesReturns;
     }
 
     internal List<(string path, Encoding encoding)> ReadAllTextCalls = new();

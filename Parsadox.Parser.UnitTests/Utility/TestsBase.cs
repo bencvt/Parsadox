@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System.Text;
 
 namespace Parsadox.Parser.UnitTests.Utility;
 
@@ -8,9 +7,12 @@ public abstract class TestsBase
     static TestsBase()
     {
         // Ensure that no actual file i/o happens.
-        RuntimeHelpers.RunClassConstructor(typeof(MockFileSystem).TypeHandle);
+        ResetMockFileSystem();
         TokenMapFactory.DisableAutoLoad = true;
     }
+
+    [TearDown]
+    public static void ResetMockFileSystem() => _ = new MockFileSystem();
 
     protected static MemoryStream CreateStream(string content, Encoding? encoding = null) =>
         new((encoding ?? Encoding.UTF8).GetBytes(content));
