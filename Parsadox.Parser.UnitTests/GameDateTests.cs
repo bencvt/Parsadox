@@ -269,6 +269,55 @@ public class GameDateTests : TestsBase
         Assert.That(result, Is.EqualTo(expectedValue));
     }
 
+    [TestCase("867.1.1", "867.1.1", "0 days")]
+    [TestCase("867.1.1", "867.1.2", "-1 days")]
+    [TestCase("867.1.1", "867.1.4", "-3 days")]
+    [TestCase("867.1.1", "866.12.31", "1 day")]
+    [TestCase("867.1.1", "866.12.29", "3 days")]
+    [TestCase("1066.9.15", "867.1.1", "199 years and 257 days")]
+    [TestCase("1066.9.15.1", "867.1.1", "199 years, 257 days, and 1 hour")]
+    [TestCase("1.1.1", "-1.1.1", "1 year")]
+    [TestCase("-1.1.1", "1.1.1", "-1 years")]
+    public void Operator_MinusGameDate_IsCorrect(string first, string second, string expected)
+    {
+        var actual = GameDate.Parse(first) - GameDate.Parse(second);
+
+        Assert.That(actual.ToString(), Is.EqualTo(expected));
+    }
+
+    [TestCase("867.1.1", 0, 0, 0, "867.1.1")]
+    [TestCase("867.1.1", 50, 0, 0, "817.1.1")]
+    [TestCase("867.1.1", -50, 0, 0, "917.1.1")]
+    [TestCase("867.1.1", 866, 0, 0, "1.1.1")]
+    [TestCase("867.1.1", 867, 0, 0, "-1.1.1")]
+    [TestCase("1.1.1", 1, 0, 0, "-1.1.1")]
+    [TestCase("-1.1.1", -1, 0, 0, "1.1.1")]
+    [TestCase("-5.1.1", -10, 0, 0, "6.1.1")]
+    [TestCase("6.1.1", 10, 0, 0, "-5.1.1")]
+    [TestCase("1.1.1", 0, 0, 1, "-1.12.31.23")]
+    public void Operator_MinusGameTimeSpan_IsCorrect(string date, int years, int days, int hours, string expected)
+    {
+        var actual = GameDate.Parse(date) - new GameTimeSpan(years, days, hours);
+
+        Assert.That(actual.ToString(), Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void After_Valid_IsCorrect()
+    {
+        string result = GameDate.Parse("1066.9.15").After("867.1.1").ToString();
+
+        Assert.That(result, Is.EqualTo("199 years and 257 days"));
+    }
+
+    [Test]
+    public void Until_Valid_IsCorrect()
+    {
+        string result = GameDate.Parse("867.1.1").Until("1066.9.15").ToString();
+
+        Assert.That(result, Is.EqualTo("199 years and 257 days"));
+    }
+
     [TestCase("-5000.1.1", "\"-4999-01-01\"")]
     [TestCase("-2.1.1", "\"-0001-01-01\"")]
     [TestCase("-1.1.1", "\"0000-01-01\"")]

@@ -205,6 +205,34 @@ public struct GameDate : IComparable<GameDate>, IEquatable<GameDate>
     public static bool operator <=(GameDate a, GameDate b) => a.CompareTo(b) <= 0;
     public static bool operator >=(GameDate a, GameDate b) => a.CompareTo(b) >= 0;
 
+    public static GameTimeSpan operator -(GameDate a, GameDate b)
+    {
+        long totalHours = a.ToI32() - (long)b.ToI32();
+        if (a.Year > 0 && b.Year < 0)
+            totalHours -= 365 * 24;
+        else if (a.Year < 0 && b.Year > 0)
+            totalHours += 365 * 24;
+        return new(totalHours);
+    }
+
+    public static GameDate operator -(GameDate date, GameTimeSpan span) => date + -span;
+    public static GameDate operator +(GameDate date, GameTimeSpan span)
+    {
+        span += new GameTimeSpan(0, 0, date.ToI32());
+        var newDate = FromI32(span.TotalHours, validate: false);
+        if (date.Year > 0 && newDate.Year <= 0)
+            newDate.Year--;
+        else if (date.Year < 0 && newDate.Year >= 0)
+            newDate.Year++;
+        newDate.Validate();
+        return newDate;
+    }
+
+    public GameTimeSpan Until(GameDate futureDate) => futureDate - this;
+    public GameTimeSpan Until(string futureDate) => Until(Parse(futureDate));
+    public GameTimeSpan After(GameDate pastDate) => this - pastDate;
+    public GameTimeSpan After(string pastDate) => After(Parse(pastDate));
+
     /// <summary>
     /// Convert to and from ISO 8601.
     /// <para/>
