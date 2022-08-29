@@ -72,7 +72,7 @@ public class TokenMapTests : TestsBase
             Assert.That(() => _tokenMap.LoadEnvironment(Game.Ck3), Throws.TypeOf<ParseException>());
             Assert.That(_mockFileSystem.GetEnvironmentVariableCalls, Has.Count.EqualTo(1));
             Assert.That(_mockFileSystem.FileExistsCalls.Single(), Is.EqualTo("some_file.txt"));
-            Assert.That(_mockFileSystem.ReadAllTextCalls.Single(), Is.EqualTo("some_file.txt"));
+            Assert.That(_mockFileSystem.ReadAllTextCalls.Single(), Is.EqualTo(("some_file.txt", Encoding.UTF8)));
             AssertIsEmpty();
         });
     }
@@ -90,7 +90,7 @@ public class TokenMapTests : TestsBase
         {
             Assert.That(_mockFileSystem.GetEnvironmentVariableCalls, Has.Count.EqualTo(1));
             Assert.That(_mockFileSystem.FileExistsCalls.Single(), Is.EqualTo("some_file.txt"));
-            Assert.That(_mockFileSystem.ReadAllTextCalls.Single(), Is.EqualTo("some_file.txt"));
+            Assert.That(_mockFileSystem.ReadAllTextCalls.Single(), Is.EqualTo(("some_file.txt", Encoding.UTF8)));
             Assert.That(_tokenMap.CodeMap, Is.Not.Empty);
             Assert.That(_tokenMap.CodeMap, Does.ContainKey(0x7777).WithValue("token7"));
         });

@@ -26,7 +26,7 @@ internal class TokenMap : ITokenMap
         return path;
     }
 
-    public ITokenMap LoadFile(string path) => LoadString(FileSystem.Instance.ReadAllText(path));
+    public ITokenMap LoadFile(string path) => LoadString(FileSystem.Instance.ReadAllText(path, Encoding.UTF8));
 
     public ITokenMap LoadString(string text)
     {

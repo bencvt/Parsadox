@@ -1,4 +1,5 @@
 ﻿using Parsadox.Parser.Utility;
+using System.Text;
 
 namespace Parsadox.Parser.UnitTests.Utility;
 
@@ -27,11 +28,11 @@ internal class MockFileSystem : IFileSystem
         return DirectoryExistsReturns;
     }
 
-    internal List<string> ReadAllTextCalls = new();
+    internal List<(string path, Encoding encoding)> ReadAllTextCalls = new();
     internal string ReadAllTextReturns { get; set; } = string.Empty;
-    public string ReadAllText(string path)
+    public string ReadAllText(string path, Encoding encoding)
     {
-        ReadAllTextCalls.Add(path);
+        ReadAllTextCalls.Add((path, encoding));
         return ReadAllTextReturns;
     }
 

@@ -9,7 +9,7 @@ internal interface IFileSystem
 
     bool DirectoryExists(string path) => Directory.Exists(path);
 
-    string ReadAllText(string path) => File.ReadAllText(path);
+    string ReadAllText(string path, Encoding encoding) => File.ReadAllText(path, encoding);
 
     void Delete(string path) => File.Delete(path);
 
