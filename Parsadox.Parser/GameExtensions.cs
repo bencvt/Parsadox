@@ -62,8 +62,8 @@ public static class GameExtensions
             // Windows
             Path.Join(Path.GetPathRoot(Environment.SystemDirectory),
                 "Program Files (x86)", "Steam", "steamapps", "common", gameDir),
-            Path.Join("C:", "SteamLibrary", "steamapps", "common"),
-            Path.Join("D:", "SteamLibrary", "steamapps", "common"),
+            Path.Join("C:", "SteamLibrary", "steamapps", "common", gameDir),
+            Path.Join("D:", "SteamLibrary", "steamapps", "common", gameDir),
         };
         AddMac("SteamApps");
         AddMac("steamapps");
