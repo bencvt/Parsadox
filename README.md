@@ -1,6 +1,6 @@
 [![NuGet](https://img.shields.io/nuget/v/Parsadox.svg?logo=nuget)](https://www.nuget.org/packages/Parsadox) ![ci](https://img.shields.io/github/workflow/status/bencvt/Parsadox/ci?logo=github)
 
-**Parsadox** is an open-source .NET library to parse save game files from Paradox Interactive grand strategy games.
+**Parsadox** is an open-source .NET library to work with files from Paradox Interactive grand strategy games.
 
 Supported games:
  * Crusader Kings II
@@ -30,3 +30,7 @@ if (stress.HasValue)
     player["alive_data"]["stress"].Value.AsDecimal -= 25;
 saveGame.DisableIronman().WriteFile("my_game_modified.ck3");
 ```
+
+# Legal notice
+
+Parsadox is a community project unaffiliated with Paradox Interactive.
