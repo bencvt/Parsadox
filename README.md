@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/nuget/v/Parsadox.svg?logo=nuget)](https://www.nuget.org/packages/Parsadox) ![ci](https://img.shields.io/github/workflow/status/bencvt/Parsadox/ci?logo=github)
+[![NuGet](https://img.shields.io/nuget/v/Parsadox.svg?logo=nuget)](https://www.nuget.org/packages/Parsadox) [![ci](https://img.shields.io/github/workflow/status/bencvt/Parsadox/ci?logo=github)](https://github.com/bencvt/Parsadox)
 
 **Parsadox** is an open-source .NET library to work with files from Paradox Interactive grand strategy games.
 
